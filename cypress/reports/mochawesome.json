@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-05T01:36:53.412Z",
+    "end": "2026-04-05T01:37:23.903Z",
+    "duration": 30491,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "25259e11-ccd1-4830-9074-58f4f5c4f551",
+      "title": "",
+      "fullFile": "cypress\\e2e\\TestCasesOrangeHRM\\home.cy.js",
+      "file": "cypress\\e2e\\TestCasesOrangeHRM\\home.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7cea84ea-cef1-4d87-9655-8e210d6f32aa",
+          "title": "Automation for the OrangeHRM for APEX System",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC019 - APEX recommended automation exercise",
+              "fullTitle": "Automation for the OrangeHRM for APEX System TC019 - APEX recommended automation exercise",
+              "timedOut": null,
+              "duration": 30168,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_loginPage.default.visit();\n_loginPage.default.LoginSuccess();\n_homePage.default.SelectClaimMenu();\n_submitClaimPage.default.GoSubmitClaim();\n_submitClaimPage.default.CreateClaimRequest();\n_submitClaimPage.default.AddExpenseOne();\n_submitClaimPage.default.AddExpenseTwo();\n_submitClaimPage.default.ValidateTheExpenses();\n_submitClaimPage.default.ClaimSubmitingProcess();\n_employeeClaimPage.default.GoEmployeeClaims();\n_employeeClaimPage.default.ValidateEmployeeClaim();\n/*\nMyClaimPage.GoMyClaim()    \nMyClaimPage.ValidateCancelClaim()*/",
+              "err": {},
+              "uuid": "edc8732d-9b36-4487-a4f5-bed50b36d05e",
+              "parentUUID": "7cea84ea-cef1-4d87-9655-8e210d6f32aa",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "edc8732d-9b36-4487-a4f5-bed50b36d05e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 30168,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
