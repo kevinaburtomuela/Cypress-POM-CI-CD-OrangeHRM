@@ -1,0 +1,16 @@
+{
+    "expenses":[
+        {
+            "ExpenseType": "Transport",
+            "Date": "2026-03-25",
+            "Amount": "100.00",
+            "Note": "Test case 19"
+        },
+        {
+            "ExpenseType": "Planned Surgery",
+            "Date": "2026-04-01",
+            "Amount": "300.00",
+            "Note": "Test case 19"
+        }
+    ]
+}
