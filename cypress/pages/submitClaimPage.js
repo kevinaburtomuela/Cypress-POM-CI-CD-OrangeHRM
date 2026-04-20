@@ -2,6 +2,7 @@ import { submitClaimSelector } from '../selectors/submitClaimSelector'
 
 class SubmitClaimPage {
 
+
     GoSubmitClaim(){
         cy.contains('Submit Claim').click()
     }
@@ -86,31 +87,19 @@ class SubmitClaimPage {
         
     }
 
-    AddExpenseOne(){
+    AddExpense(expense){
         //Add the first expense
         cy.get(submitClaimSelector.addExpensesButton).click()
         cy.get(submitClaimSelector.ExpenseTypeDropdown).click() 
-        cy.contains('Transport').click()         
-        cy.get(submitClaimSelector.dateField).clear().type('2026-03-25')        
-        cy.get(submitClaimSelector.amountField).type('100.00')                
-        cy.get(submitClaimSelector.noteField).type('Test case 19')        
+        cy.contains(expense.ExpenseType).click()         
+        cy.get(submitClaimSelector.dateField).clear().type(expense.Date)        
+        cy.get(submitClaimSelector.amountField).type(expense.Amount)                
+        cy.get(submitClaimSelector.noteField).type(expense.Note)        
         cy.get(submitClaimSelector.saveButton).click()
         //Validate the success expense message
         cy.contains('Successfully Saved').should('exist')
     }
 
-    AddExpenseTwo(){
-        //Add the second expense
-        cy.get(submitClaimSelector.addExpensesButton).click()
-        cy.get(submitClaimSelector.ExpenseTypeDropdown).click() 
-        cy.contains('Planned Surgery').click()         
-        cy.get(submitClaimSelector.dateField).clear().type('2026-04-01')        
-        cy.get(submitClaimSelector.amountField).type('300.00')                
-        cy.get(submitClaimSelector.noteField).type('Test case 19')        
-        cy.get(submitClaimSelector.saveButton).click()
-        //Validate the success expense message
-        cy.contains('Successfully Saved').should('exist')
-    }
     ValidateTheExpenses(){
         //Validate the expenses and the amount
         cy.contains('(2) Records Found').should('exist')                

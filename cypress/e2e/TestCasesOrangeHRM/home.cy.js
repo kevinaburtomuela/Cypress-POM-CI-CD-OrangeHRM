@@ -5,6 +5,7 @@ import DirectoryPage from '../../pages/directoryPage'
 import SubmitClaimPage from '../../pages/submitClaimPage'
 import MyClaimPage from '../../pages/myClaimPage'
 import EmployeeClaimPage from '../../pages/employeeClaimPage'
+import expenseData from '../../fixtures/expenses.json'
 
 
 describe('Automation for the OrangeHRM for APEX System', () => {
@@ -164,8 +165,8 @@ describe('Automation for the OrangeHRM for APEX System', () => {
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
     SubmitClaimPage.CreateClaimRequest()    
-    SubmitClaimPage.AddExpenseOne()      
-    SubmitClaimPage.AddExpenseTwo()       
+    SubmitClaimPage.AddExpense(expenseData.expenses[0])      
+    SubmitClaimPage.AddExpense(expenseData.expenses[1])       
     SubmitClaimPage.ValidateTheExpenses()      
     SubmitClaimPage.ClaimSubmitingProcess()
     EmployeeClaimPage.GoEmployeeClaims()    
