@@ -1,0 +1,28 @@
+# Dependencias
+node_modules/
+
+# Archivos generados por Cypress
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+
+# Reportes
+cypress/reports/
+mochawesome-report/
+allure-results/
+allure-report/
+
+# Variables de entorno
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de IDEs
+.vscode/
+.idea/
