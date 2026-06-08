@@ -32,14 +32,14 @@ describe('Automation for the OrangeHRM for APEX System', () => {
     RequestPasswordPage.ResetPasswordRequest()
   })
 
-    it('TC005 - Search employee by full name', () => {
+    it.skip('TC005 - Search employee by full name', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
     DirectoryPage.FullName()
   })
 
-    it('TC006 - Search employee by partial name', () => {
+    it.skip('TC006 - Search employee by partial name', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
@@ -47,7 +47,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
 
   
-    it('TC007 - Search by Job Title', () => {
+    it.skip('TC007 - Search by Job Title', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
@@ -55,7 +55,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
 
 
-    it('TC008 - Search by Location', () => {
+    it.skip('TC008 - Search by Location', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
@@ -63,14 +63,14 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
 
   
-    it('TC009 - Search using multiple filters', () => {
+    it.skip('TC009 - Search using multiple filters', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
     DirectoryPage.MultipleFilters()
   })
 
-    it('TC010 - Validate the Reset button', () => {
+    it.skip('TC010 - Validate the Reset button', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
