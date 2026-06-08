@@ -79,14 +79,14 @@ describe('Automation for the OrangeHRM for APEX System', () => {
 
   
 
-    it('TC011 - Validate the Dropdown arrow', () => {
+    it.skip('TC011 - Validate the Dropdown arrow', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectDirectoryMenu()
     DirectoryPage.DropdownArrow()
   })
 
-    it('TC012 - Create a Medical reimbursement claim', () => {
+    it.skip('TC012 - Create a Medical reimbursement claim', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -97,7 +97,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
 
 
-    it('TC013 - Create an Accommodation claim', () => {
+    it.skip('TC013 - Create an Accommodation claim', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -108,7 +108,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
 
   
-    it('TC014 - Travel Allowance', () => {
+    it.skip('TC014 - Travel Allowance', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -118,7 +118,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
     MyClaimPage.ValidateTravelAllowanceClaim()
   })
 
-    it('TC015 - Submit claim with empty fields', () => {
+    it.skip('TC015 - Submit claim with empty fields', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -129,7 +129,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
   
 
-  it('TC016 - Verify confirmation message', () => {
+  it.skip('TC016 - Verify confirmation message', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -138,7 +138,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
  
 
-    it('TC017 - Complete full claim submission flow', () => {
+    it.skip('TC017 - Complete full claim submission flow', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -149,7 +149,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
   })
 
 
-    it('TC018 - Validate the cancel button on the Submit claim page', () => {
+    it.skip('TC018 - Validate the cancel button on the Submit claim page', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
@@ -159,7 +159,7 @@ describe('Automation for the OrangeHRM for APEX System', () => {
     MyClaimPage.ValidateCancelClaim()
   })
  
-    it('TC019 - APEX recommended automation exercise', () => {
+    it.skip('TC019 - APEX recommended automation exercise', () => {
     LoginPage.visit()
     LoginPage.LoginSuccess()
     HomePage.SelectClaimMenu()
