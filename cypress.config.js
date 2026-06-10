@@ -11,6 +11,12 @@ module.exports = defineConfig({
 
   e2e: {
     baseUrl: "https://opensource-demo.orangehrmlive.com",
+
+    retries: {
+      runMode: 0,
+      openMode: 0
+    },
+
     setupNodeEvents(on, config) {
     },
   },
