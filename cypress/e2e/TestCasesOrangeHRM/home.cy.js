@@ -7,173 +7,145 @@ import MyClaimPage from '../../pages/myClaimPage'
 import EmployeeClaimPage from '../../pages/employeeClaimPage'
 import expenseData from '../../fixtures/expenses.json'
 
+const ADMIN_USERNAME = 'Admin'
+const ADMIN_PASSWORD = 'admin123'
 
 describe('Automation for the OrangeHRM for APEX System', () => {
 
   it('TC001 - Test login with valid user', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.ValidateHomePage()
   })
-  
-    it('TC002 - Test login with incorrect password', () => {
+
+  it('TC002 - Test login with incorrect password', () => {
     LoginPage.visit()
-    LoginPage.LoginPasswordIncorrect()
+    LoginPage.Login(ADMIN_USERNAME, '4444')
+    LoginPage.ValidateErrorMessage('Invalid credentials')
   })
 
-    it('TC003 - User attempts to log in with an unregistered account', () => {
+  it('TC003 - User attempts to log in with an unregistered account', () => {
     LoginPage.visit()
-    LoginPage.LoginUnregisteredAccount()
+    LoginPage.Login('Kevin Aburto', ADMIN_PASSWORD)
+    LoginPage.ValidateErrorMessage('Invalid credentials')
   })
 
-    it('TC004 - Verify the password recovery functionality', () => {
+  it('TC004 - Verify the password recovery functionality', () => {
     LoginPage.visit()
     LoginPage.ForgotPassword()
-    RequestPasswordPage.ResetPasswordRequest()
+    RequestPasswordPage.ResetPasswordRequest('KevinAburto')
+    RequestPasswordPage.ValidateResetMessage('Reset Password link sent successfully')
   })
 
-    it.skip('TC005 - Search employee by full name', () => {
+  it('TC005 - Validate the Reset button', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectDirectoryMenu()
-    DirectoryPage.FullName()
+    DirectoryPage.FillFilters({
+      name: 'Peter Mac Anderson',
+      jobTitle: 'Chief Financial Officer',
+      location: 'New York Sales Office'
+    })
+    DirectoryPage.ClickReset()
+    DirectoryPage.ValidateFiltersCleared()
   })
 
-    it.skip('TC006 - Search employee by partial name', () => {
+  it('TC006 - Validate the Dropdown arrow', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectDirectoryMenu()
-    DirectoryPage.PartialName()
+    DirectoryPage.ClickDropdownArrow()
+    DirectoryPage.ValidateFiltersHidden()
   })
 
-  
-    it.skip('TC007 - Search by Job Title', () => {
+  it('TC007 - Create a Medical reimbursement claim', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectDirectoryMenu()
-    DirectoryPage.JobTittle()
-  })
-
-
-    it.skip('TC008 - Search by Location', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectDirectoryMenu()
-    DirectoryPage.Location()
-  })
-
-  
-    it.skip('TC009 - Search using multiple filters', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectDirectoryMenu()
-    DirectoryPage.MultipleFilters()
-  })
-
-    it.skip('TC010 - Validate the Reset button', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectDirectoryMenu()
-    DirectoryPage.ResetButton()
-  })
-
-  
-
-    it.skip('TC011 - Validate the Dropdown arrow', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectDirectoryMenu()
-    DirectoryPage.DropdownArrow()
-  })
-
-    it.skip('TC012 - Create a Medical reimbursement claim', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.MedicalReinbursmentClaim()
+    SubmitClaimPage.CreateClaim('Medical Reimbursement', 'Mexican Peso', 'Test case 12 data')
+    SubmitClaimPage.ValidateSuccessMessage()
     MyClaimPage.GoMyClaim()
-    MyClaimPage.ValidateMedicalReimbursementClaim()
+    MyClaimPage.ValidateClaimStatus('Test case 12 data', 'Initiated')
   })
 
-
-    it.skip('TC013 - Create an Accommodation claim', () => {
+  it('TC008 - Create an Accommodation claim', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.AccommodationClaim()
+    SubmitClaimPage.CreateClaim('Accommodation', 'Mexican Peso', 'Test case 13 data')
+    SubmitClaimPage.ValidateSuccessMessage()
     MyClaimPage.GoMyClaim()
-    MyClaimPage.ValidateAccommodationClaim()
+    MyClaimPage.ValidateClaimStatus('Test case 13 data', 'Initiated')
   })
 
-  
-    it.skip('TC014 - Travel Allowance', () => {
+  it('TC009 - Travel Allowance', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.TravelAllowanceClaim()
+    SubmitClaimPage.CreateClaim('Travel Allowance', 'Mexican Peso', 'Test case 14 data')
+    SubmitClaimPage.ValidateSuccessMessage()
     MyClaimPage.GoMyClaim()
-    MyClaimPage.ValidateTravelAllowanceClaim()
+    MyClaimPage.ValidateClaimStatus('Test case 14 data', 'Initiated')
   })
 
-    it.skip('TC015 - Submit claim with empty fields', () => {
+  it('TC010 - Submit claim with empty fields', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.EmptyFieldsClaim()
+    SubmitClaimPage.FillClaimWithoutSelection('Test case 15 data')
     MyClaimPage.GoMyClaim()
-    MyClaimPage.ValidateEmptyFieldsClaim()
+    MyClaimPage.ValidateClaimNotExist('Test case 15 data')
   })
-  
 
-  it.skip('TC016 - Verify confirmation message', () => {
+  it('TC011 - Verify confirmation message', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
+    SubmitClaimPage.CreateClaim('Travel Allowance', 'Mexican Peso', 'Test case 16 data')
     SubmitClaimPage.ValidateSuccessMessage()
   })
- 
 
-    it.skip('TC017 - Complete full claim submission flow', () => {
+  it('TC012 - Complete full claim submission flow', () => {
     LoginPage.visit()
-    LoginPage.LoginSuccess()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
     HomePage.SelectClaimMenu()
     SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.SubmitClaim()
-    MyClaimPage.GoMyClaim()    
-    MyClaimPage.ValidateSubmitedClaim()
-  })
-
-
-    it.skip('TC018 - Validate the cancel button on the Submit claim page', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectClaimMenu()
-    SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.CancelClaim()
-    MyClaimPage.GoMyClaim()    
-    MyClaimPage.ValidateCancelClaim()
-  })
- 
-    it.skip('TC019 - APEX recommended automation exercise', () => {
-    LoginPage.visit()
-    LoginPage.LoginSuccess()
-    HomePage.SelectClaimMenu()
-    SubmitClaimPage.GoSubmitClaim()
-    SubmitClaimPage.CreateClaimRequest()    
-    SubmitClaimPage.AddExpense(expenseData.expenses[0])      
-    SubmitClaimPage.AddExpense(expenseData.expenses[1])       
-    SubmitClaimPage.ValidateTheExpenses()      
+    SubmitClaimPage.CreateClaim('Travel Allowance', 'Korean Won', 'Test case 17 data')
+    SubmitClaimPage.ValidateSuccessMessage()
     SubmitClaimPage.ClaimSubmitingProcess()
-    EmployeeClaimPage.GoEmployeeClaims()    
-    EmployeeClaimPage.ValidateEmployeeClaim()
+    MyClaimPage.GoMyClaim()
+    MyClaimPage.ValidateClaimStatus('Test case 17 data', 'Submitted')
   })
 
+  it('TC013 - Validate the cancel button on the Submit claim page', () => {
+    LoginPage.visit()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
+    HomePage.SelectClaimMenu()
+    SubmitClaimPage.GoSubmitClaim()
+    SubmitClaimPage.CreateClaim('Accommodation', 'Korean Won', 'Test case 18 data')
+    SubmitClaimPage.CancelClaim()
+    MyClaimPage.GoMyClaim()
+    MyClaimPage.ValidateClaimNotExist('Test case 18 data')
+  })
 
-
+  it('TC014 - Creation of multiples claims with valid date', () => {
+    LoginPage.visit()
+    LoginPage.Login(ADMIN_USERNAME, ADMIN_PASSWORD)
+    HomePage.SelectClaimMenu()
+    SubmitClaimPage.GoSubmitClaim()
+    SubmitClaimPage.CreateClaim('Medical Reimbursement', 'Euro', 'Test case 19 data')
+    SubmitClaimPage.ValidateSuccessMessage()
+    SubmitClaimPage.AddExpense(expenseData.expenses[0])
+    SubmitClaimPage.AddExpense(expenseData.expenses[1])
+    SubmitClaimPage.ValidateExpensesTotal(2, 'Total Amount (Euro) : 400.00')
+    SubmitClaimPage.ClaimSubmitingProcess()
+    EmployeeClaimPage.GoEmployeeClaims()
+    EmployeeClaimPage.ValidateClaimStatus('Test case 19 data', 'Submitted')
+  })
 
 })

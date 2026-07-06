@@ -6,11 +6,9 @@ class EmployeeClaimPage {
         cy.contains('Employee Claims').click()
     }
 
-    ValidateEmployeeClaim(){ 
-        //Validate the submited claim
-        cy.contains(employeeClaimSelector.recordFound, 'Test case 19 data').closest('.oxd-table-row').should('contain', 'Submitted')
+    ValidateClaimStatus(noteText, status) {
+        cy.contains(employeeClaimSelector.recordFound, noteText).closest('.oxd-table-row').should('contain', status)
     }
-
 
 }
 

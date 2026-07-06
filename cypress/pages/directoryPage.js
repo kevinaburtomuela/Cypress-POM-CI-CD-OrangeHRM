@@ -2,68 +2,38 @@ import { directorySelector } from '../selectors/directorySelector'
 
 class DirectoryPage {
 
-
-    FullName(){
-        cy.get(directorySelector.employeeNameField).type('Peter Mac Anderson')       
-        cy.get(directorySelector.searchButton).click()
-        cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain','(1) Record Found')        
-        
-        // This is the verification that the assert works
-        //cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain','(99) Records Found')
+    FillFilters({ name, jobTitle, location } = {}) {
+        if (name) {
+            cy.get(directorySelector.employeeNameField).type(name)
+        }
+        if (jobTitle) {
+            cy.get(directorySelector.jobTitleMenu).click()
+            cy.contains(jobTitle).click()
+        }
+        if (location) {
+            cy.get(directorySelector.LocationMenu).click()
+            cy.contains(location).click()
+        }
     }
 
-    PartialName(){
-        cy.get(directorySelector.employeeNameField).type('Anne')       
-        cy.get(directorySelector.searchButton).click()
-        cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain','(1) Record Found')    
-    }
-
-    JobTittle(){
-        cy.get(directorySelector.jobTitleMenu).click()
-        cy.contains('HR Manager').click()
-        cy.get(directorySelector.searchButton).click()
-        cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain','(1) Record Found')  
-        cy.contains('Anne a Asprey').should('be.visible')
-    }
-
-    Location(){
-        cy.get(directorySelector.LocationMenu).click()        
-        cy.contains('Texas R&D').click()        
-        cy.get(directorySelector.searchButton).click()        
-        cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain','(1) Record Found') 
-        cy.contains('Anne a Asprey').should('be.visible')
-    }
-
-    MultipleFilters(){
-        cy.get(directorySelector.employeeNameField).type('Peter Mac Anderson')
-        cy.get(directorySelector.jobTitleMenu).click()
-        cy.contains('Chief Financial Officer').click()   
-        cy.get(directorySelector.LocationMenu).click()        
-        cy.contains('New York Sales Office').click()
-        cy.get(directorySelector.searchButton).click()        
-        cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain','(1) Record Found')  
-        cy.contains('Peter Mac Anderson').should('be.visible')
-
-    }
-    ResetButton(){
-        cy.get(directorySelector.employeeNameField).type('Peter Mac Anderson')
-        cy.get(directorySelector.jobTitleMenu).click()
-        cy.contains('Chief Financial Officer').click()   
-        cy.get(directorySelector.LocationMenu).click()        
-        cy.contains('New York Sales Office').click()
+    ClickReset() {
         cy.get(directorySelector.resetButton).click()
-        cy.get(directorySelector.employeeNameField).should('have.value', '')
-        cy.get(directorySelector.jobTitleMenu).should('have.value', '')        
-        cy.get(directorySelector.LocationMenu).should('have.value', '')
-
     }
 
-    DropdownArrow(){
+    ValidateFiltersCleared() {
+        cy.get(directorySelector.employeeNameField).should('have.value', '')
+        cy.get(directorySelector.jobTitleMenu).should('have.value', '')
+        cy.get(directorySelector.LocationMenu).should('have.value', '')
+    }
+
+    ClickDropdownArrow() {
         cy.get(directorySelector.dropdownIcon).click()
+    }
+
+    ValidateFiltersHidden() {
         cy.get(directorySelector.employeeNameField).should('not.be.visible')
         cy.get(directorySelector.jobTitleMenu).should('not.be.visible')
         cy.get(directorySelector.LocationMenu).should('not.be.visible')
-
     }
 
 }
