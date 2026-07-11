@@ -102,4 +102,4 @@ docker run kevinaburtomuela/orangehrm-cypress:latest
 
 ## Author
 
-Kevin Aburto Muela
+Kevin Aburto
